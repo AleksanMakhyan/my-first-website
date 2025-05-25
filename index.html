@@ -1,15 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My First Cybersecurity Site</title>
+<meta charset="UTF-8">
+<title>Website Security Checker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: url('https://images.unsplash.com/photo-1591012911203-9b5c5e3e1be0') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #1e7e34;
+  }
+  .spinner-container {
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #28a745;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .progress-container {
+    display: none;
+    width: 100%;
+    background: #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .progress-bar {
+    width: 0%;
+    height: 10px;
+    background: #28a745;
+    animation: progress 3s linear forwards;
+  }
+  @keyframes progress {
+    to { width: 100%; }
+  }
+</style>
+<script>
+  function showSpinner() {
+    document.querySelector('.spinner-container').style.display = 'block';
+    document.querySelector('.progress-container').style.display = 'block';
+  }
+</script>
 </head>
 <body>
-  <h1>Welcome to My Site!</h1>
-  <p>Enter your website URL to check for security issues:</p>
-
-  <form action="#" method="GET">
-    <input type="text" name="website" placeholder="https://example.com" required>
-    <button type="submit">Scan My Website</button>
-  </form>
+  <div class="container">
+    <h1>🔒 Website Security Checker</h1>
+    <form method="POST" action="#" onsubmit="showSpinner()">
+      <input type="text" name="website" placeholder="example.com" required>
+      <button type="submit">Scan My Website</button>
+    </form>
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <p>Scanning... Please wait.</p>
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
 </body>
 </html>
