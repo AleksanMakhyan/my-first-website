@@ -114,6 +114,10 @@
     // Show spinner and progress bar
     document.querySelector('.spinner-container').style.display = 'block';
     document.querySelector('.progress-container').style.display = 'block';
+    document.querySelector('.progress-bar').style.width = '0%';
+    setTimeout(() => {
+      document.querySelector('.progress-bar').style.width = '100%';
+    }, 50);
 
     const website = document.getElementById("websiteInput").value;
     const resultBox = document.getElementById("results");
