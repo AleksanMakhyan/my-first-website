@@ -152,7 +152,13 @@
       document.querySelector('.spinner-container').style.display = 'none';
       document.querySelector('.progress-container').style.display = 'none';
 
-      resultBox.textContent = data.result || data.error || "Unknown error.";
+      // Always display 3 lines (some may be empty)
+      const resultLines = (data.result || data.error || "Unknown error.").split("\n");
+      while (resultLines.length < 3) {
+        resultLines.push("");
+      }
+      resultBox.textContent = resultLines.join("\n");
+
     } catch (error) {
       console.error(error);
       alert("Error scanning website. Try again!");
