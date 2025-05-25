@@ -119,9 +119,7 @@
     <div class="progress-container">
       <div class="progress-bar"></div>
     </div>
-    <div class="result-box" id="results">
-      <!-- Will fill in dynamically -->
-    </div>
+    <div class="result-box" id="results"></div>
   </div>
 
 <script>
@@ -166,12 +164,22 @@
         lines.push("");
       }
 
-      // Display in 4 rows
+      // Extract status codes from each line
+      const getStatusCode = line => {
+        const match = line.match(/(\d{3})/);
+        return match ? match[1] : "N/A";
+      };
+
+      const statusCode1 = getStatusCode(lines[0]);
+      const statusCode2 = getStatusCode(lines[1]);
+      const statusCode3 = getStatusCode(lines[2]);
+      const statusCode4 = getStatusCode(lines[2]); // Final landing page status code
+
       document.getElementById("results").innerHTML = `
-        <div class="result-row"><span class="result-key">Status:</span> <span>${lines[0]}</span></div>
-        <div class="result-row"><span>http://${websiteInput}</span></div>
-        <div class="result-row"><span>https://${websiteInput}</span></div>
-        <div class="result-row"><span>${lines[2]}</span></div>
+        <div class="result-row"><span class="result-key">Status:</span> <span>${statusCode1}</span></div>
+        <div class="result-row"><span>http://${websiteInput}</span> <span>${statusCode2}</span></div>
+        <div class="result-row"><span>https://${websiteInput}</span> <span>${statusCode3}</span></div>
+        <div class="result-row"><span>${lines[2]}</span> <span>${statusCode4}</span></div>
       `;
 
     } catch (error) {
