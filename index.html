@@ -156,12 +156,22 @@
       document.querySelector('.spinner-container').style.display = 'none';
       document.querySelector('.progress-container').style.display = 'none';
 
-      document.getElementById("results").innerHTML = `
-        <div class="result-row"><span class="result-key">Status:</span> <span>${data.status}</span></div>
-        <div class="result-row"><span>http://${websiteInput}</span> <span>${data.status_http}</span></div>
-        <div class="result-row"><span>https://${websiteInput}</span> <span>${data.status_https}</span></div>
-        <div class="result-row"><span>${data.final_url}</span> <span>${data.status_final}</span></div>
-      `;
+      // Build results dynamically based on available data
+      let resultHTML = `<div class="result-row"><span class="result-key">Status:</span> <span>${data.status}</span></div>`;
+
+      if (data.status_http !== "N/A") {
+        resultHTML += `<div class="result-row"><span>http://${websiteInput}</span> <span>${data.status_http}</span></div>`;
+      }
+
+      if (data.status_https !== "N/A") {
+        resultHTML += `<div class="result-row"><span>https://${websiteInput}</span> <span>${data.status_https}</span></div>`;
+      }
+
+      if (data.status_final !== "N/A" && data.final_url !== "N/A") {
+        resultHTML += `<div class="result-row"><span>${data.final_url}</span> <span>${data.status_final}</span></div>`;
+      }
+
+      document.getElementById("results").innerHTML = resultHTML;
 
     } catch (error) {
       console.error(error);
