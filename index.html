@@ -100,9 +100,6 @@
   .result-key {
     font-weight: bold;
   }
-  .error {
-    color: #f00;
-  }
 </style>
 </head>
 <body>
@@ -159,27 +156,11 @@
       document.querySelector('.spinner-container').style.display = 'none';
       document.querySelector('.progress-container').style.display = 'none';
 
-      const lines = (data.result || data.error || "Unknown error.").split("\n");
-      while (lines.length < 4) {
-        lines.push("");
-      }
-
-      // Extract status codes from each line
-      const getStatusCode = line => {
-        const match = line.match(/(\d{3})/);
-        return match ? match[1] : "N/A";
-      };
-
-      const statusCode1 = getStatusCode(lines[0]);
-      const statusCode2 = getStatusCode(lines[1]);
-      const statusCode3 = getStatusCode(lines[2]);
-      const statusCode4 = getStatusCode(lines[2]); // Final landing page status code
-
       document.getElementById("results").innerHTML = `
-        <div class="result-row"><span class="result-key">Status:</span> <span>${statusCode1}</span></div>
-        <div class="result-row"><span>http://${websiteInput}</span> <span>${statusCode2}</span></div>
-        <div class="result-row"><span>https://${websiteInput}</span> <span>${statusCode3}</span></div>
-        <div class="result-row"><span>${lines[2]}</span> <span>${statusCode4}</span></div>
+        <div class="result-row"><span class="result-key">Status:</span> <span>${data.status}</span></div>
+        <div class="result-row"><span>http://${websiteInput}</span> <span>${data.status_http}</span></div>
+        <div class="result-row"><span>https://${websiteInput}</span> <span>${data.status_https}</span></div>
+        <div class="result-row"><span>${data.final_url}</span> <span>${data.status_final}</span></div>
       `;
 
     } catch (error) {
