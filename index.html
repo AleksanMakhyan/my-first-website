@@ -2,42 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Intruyo - Secure Your Website</title>
+<title>My First Website - Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  :root {
-    --green: #00ff00;
-    --black: #0a0a0a;
-  }
   body {
-    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #fff;
-    background: var(--black);
+    background: #f0f0f0;
+    margin: 0;
+    padding: 0;
   }
   header {
-    position: relative;
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.7);
+    background: #111;
     color: #fff;
-    padding: 10px 30px;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  header .logo {
-    display: flex;
-    align-items: center;
+  header h1 {
     font-size: 1.2rem;
-    font-weight: 600;
-  }
-  header .logo img {
-    width: 32px;
-    height: 32px;
-    margin-right: 10px;
+    margin: 0;
   }
   nav a {
-    color: var(--green);
+    color: #0f0;
     text-decoration: none;
     margin-left: 20px;
     font-weight: 600;
@@ -46,86 +33,29 @@
   nav a:hover {
     color: #fff;
   }
-  .hero {
-    position: relative;
+  .content {
     text-align: center;
-    padding: 100px 20px;
-    background: url('https://images.unsplash.com/photo-1573164574230-1c02e97aa2ec?auto=format&fit=crop&w=1740&q=80') center/cover no-repeat;
+    margin: 100px auto;
   }
-  .hero::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, #000 100%);
-  }
-  .hero-content {
-    position: relative;
-    z-index: 1;
-  }
-  .hero h1 {
-    font-size: 2.5rem;
-    margin: 0;
-    color: var(--green);
-  }
-  .hero p {
-    max-width: 600px;
-    margin: 20px auto;
-    font-size: 1rem;
-    color: #ddd;
-  }
-  .hero .buttons {
-    margin-top: 30px;
-  }
-  .hero .buttons button {
-    background: var(--green);
-    color: var(--black);
-    border: none;
+  .web-scan-button {
+    display: inline-block;
+    background: #28a745;
+    color: white;
     padding: 12px 24px;
-    margin: 0 10px;
     border-radius: 6px;
-    cursor: pointer;
+    text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    margin-top: 20px;
     transition: background 0.3s;
   }
-  .hero .buttons button:hover {
-    background: #00cc00;
-  }
-  .hero .buttons button.secondary {
-    background: transparent;
-    border: 1px solid var(--green);
-    color: var(--green);
+  .web-scan-button:hover {
+    background: #218838;
   }
 </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="https://api.iconify.design/mdi:shield-lock.svg?color=%2300ff00" alt="logo" />
-      Intruyo
-    </div>
+    <h1>🔒 My First Website</h1>
     <nav>
-      <a href="#">Platform</a>
-      <a href="#">Use Cases</a>
-      <a href="#">Pricing</a>
-      <a href="#">Resources</a>
-      <a href="#">Login</a>
-      <a href="#" style="color: #000; background: var(--green); padding: 8px 16px; border-radius: 4px;">Try for Free</a>
-    </nav>
-  </header>
-
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Stop breaches before they start</h1>
-      <p>Attackers move fast, you need to be faster. Use Intruyo for real-time discovery and prioritization of attack surface weaknesses, so you can focus on the fixes that matter.</p>
-      <div class="buttons">
-        <button>Try for Free</button>
-        <button class="secondary">Get a Demo</button>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+      <a href="index.html">Home</a>
+      <a href="scanner.html">Websit
