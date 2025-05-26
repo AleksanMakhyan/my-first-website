@@ -12,6 +12,28 @@
     margin: 0;
     padding: 0;
   }
+  header {
+    background: #111;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  nav a {
+    color: #0f0;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #fff;
+  }
   .container {
     max-width: 600px;
     background: #ffffffdd;
@@ -20,7 +42,7 @@
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   }
-  h1 {
+  h2 {
     text-align: center;
     color: #222;
     margin-bottom: 20px;
@@ -103,8 +125,16 @@
 </style>
 </head>
 <body>
+  <header>
+    <h1>🔒 My First Website</h1>
+    <nav>
+      <a href="https://myfirstwebsite-bra.pages.dev/">Home</a>
+      <a href="index.html">Website Scanner</a>
+    </nav>
+  </header>
+
   <div class="container">
-    <h1>🔒 Website Security Checker</h1>
+    <h2>Website Security Checker</h2>
     <form id="scanForm">
       <input type="text" id="websiteInput" placeholder="example.com" required>
       <button type="submit">Scan</button>
