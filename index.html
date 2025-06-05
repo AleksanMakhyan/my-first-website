@@ -1,61 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>My First Website - Home</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f0f0;
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    background: #111;
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  header h1 {
-    font-size: 1.2rem;
-    margin: 0;
-  }
-  nav a {
-    color: #0f0;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: 600;
-    transition: color 0.3s;
-  }
-  nav a:hover {
-    color: #fff;
-  }
-  .content {
-    text-align: center;
-    margin: 100px auto;
-  }
-  .web-scan-button {
-    display: inline-block;
-    background: #28a745;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    margin-top: 20px;
-    transition: background 0.3s;
-  }
-  .web-scan-button:hover {
-    background: #218838;
-  }
-</style>
+  <meta charset="utf-8" />
+  <title>Intrusion Scanner</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem auto;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+    h1 { color: #2F4F4F; }
+    form { margin-bottom: 1.5rem; }
+    input[type="text"] {
+      width: 80%;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      background-color: #2F4F4F;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover { background-color: #1E3030; }
+    .result-section { margin-top: 1.5rem; }
+    .result-section h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.2rem; }
+    ul { list-style: none; padding-left: 0; }
+    li { margin-bottom: 0.3rem; }
+    .error { color: red; }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>🔒 My First Website</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="scanner.html">Websit
+  <h1>Intrusion Scanner</h1>
+  <form method="post">
+    <input
+      type="text"
+      name="url"
+      placeholder="e.g. example.com or https://example.com"
+      required
+    />
+    <button type="submit">Scan</button>
+  </form>
+
+  {% if result %}
+    <div class="result-section">
+      {% if result.error %}
+        <p class="error">{{ result.error }}</p>
+      {% else %}
+        <h2>Results for: <em>{{ result.url }}</em></h2>
+
+        <!-- HTTP Headers -->
+        <h3>1) HTTP Response Headers</h3>
+        {% if result.headers %}
+          <ul>
+            {% for key, val in result.headers.items() %}
+              <li><strong>{{ key }}:</strong> {{ val }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p><em>Unable to fetch headers (timeout or invalid URL).</em></p>
+        {% endif %}
+
+        <!-- Open Ports -->
+        <h3>2) Open Common Ports</h3>
+        {% if result.open_ports %}
+          <p>Open ports detected:</p>
+          <ul>
+            {% for p in result.open_ports %}
+              <li>• Port {{ p }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p><em>No common ports (21,22,23,80,443,3306,8080) appear open.</em></p>
+        {% endif %}
+
+        <!-- SSL Certificate (if HTTPS) -->
+        {% if result.ssl_info %}
+          <h3>3) SSL Certificate Details</h3>
+          <ul>
+            <li><strong>Issuer Common Name:</strong> {{ result.ssl_info.issuer.get('CN', 'n/a') }}</li>
+            <li><strong>Subject Common Name:</strong> {{ result.ssl_info.subject.get('CN', 'n/a') }}</li>
+            <li><strong>Expires On:</strong> {{ result.ssl_info.notAfter }}</li>
+          </ul>
+        {% endif %}
+      {% endif %}
+    </div>
+  {% endif %}
+</body>
+</html>
